@@ -22,6 +22,8 @@ public class Rabbit : MonoBehaviour
     public Animator rabbit;
     public float spinTime = 1;
     public LayerMask groundLayer;
+    public bool isWalking = false;
+    public bool isStanding = true;
 
 
     void Awake()
@@ -42,14 +44,15 @@ public class Rabbit : MonoBehaviour
         float holdTime = (Time.time - timeOfSprint);
         if (Input.GetKeyDown(speedRun) && holdTime >= sprintCooldown)
         {
-            rabbit.CrossFade("charge", spinTime);
+            isWalking = false;
+            isStanding = false;
+            rabbit.CrossFade("Rul 0", spinTime);
             timeOfSprint = Time.time;
         }
         if (Input.GetKeyDown(jumpButton))
         {
             timeOfClick = Time.time;
         }
-        //Indsæt en "if-sætning" til at tjekke for kontakt med "jord"
         
 
 
@@ -57,18 +60,42 @@ public class Rabbit : MonoBehaviour
 
     void FixedUpdate()
     {
+        float holdTime = (Time.time - timeOfSprint);
 
         if (Physics.Raycast(transform.position + Vector3.up * 0.2f, Vector3.down, laserR, groundLayer))
         {
             if (Input.GetKeyUp(jumpButton))
             {
                 Jump();
-            }
 
+            }
+            else if (holdTime >= timeOfBoost)
+            {
+                if (Mathf.Abs(Input.GetAxis("Horizontal")) < 0.001f)
+                {
+
+                    if (!isStanding)
+                    {
+                        
+                        isStanding = true;
+                        isWalking = false;
+                        rabbit.CrossFade("Idle 0", spinTime);
+                    }
+                }
+                else
+                {
+
+                    if (!isWalking)
+                    {
+                        isWalking = true;
+                        isStanding = false;
+                        rabbit.CrossFade("Gå 0", spinTime);
+                    }
+                }
+            }
         }
         
 
-        float holdTime = (Time.time - timeOfSprint);
         if (holdTime < timeOfBoost)
         {
             Move(Movement * Input.GetAxis("Horizontal") * speedRunFast);
@@ -76,6 +103,7 @@ public class Rabbit : MonoBehaviour
         else
         {
             Move(Movement * Input.GetAxis("Horizontal"));
+
         }
 
     }
@@ -87,8 +115,11 @@ public class Rabbit : MonoBehaviour
     }
     public void Jump()
     {
+        isWalking = false;
+        isStanding = false; 
         float holdTime = (Time.time - timeOfClick);
         myRigidbody.velocity = new Vector3(myRigidbody.velocity.x, jumpHeight + Mathf.Min(holdTime, charge) * chargedJump, myRigidbody.velocity.z);
+        rabbit.CrossFade("Hop", spinTime);
     }
 
    
