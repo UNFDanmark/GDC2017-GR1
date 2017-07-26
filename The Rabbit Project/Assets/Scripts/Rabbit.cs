@@ -19,6 +19,9 @@ public class Rabbit : MonoBehaviour
     public float timeOfBoost = 0;
     public float sprintCooldown = 0;
     public float laserR = 0.6f;
+    public Animator rabbit;
+    public float spinTime = 1;
+    public LayerMask groundLayer;
 
 
     void Awake()
@@ -30,6 +33,7 @@ public class Rabbit : MonoBehaviour
     void Start()
     {
         timeOfSprint = -sprintCooldown;
+        rabbit = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -38,6 +42,7 @@ public class Rabbit : MonoBehaviour
         float holdTime = (Time.time - timeOfSprint);
         if (Input.GetKeyDown(speedRun) && holdTime >= sprintCooldown)
         {
+            rabbit.CrossFade("charge", spinTime);
             timeOfSprint = Time.time;
         }
         if (Input.GetKeyDown(jumpButton))
@@ -53,9 +58,7 @@ public class Rabbit : MonoBehaviour
     void FixedUpdate()
     {
 
-        Vector3 down = transform.TransformDirection(Vector3.down);
-
-        if (Physics.Raycast(transform.position, down, laserR))
+        if (Physics.Raycast(transform.position + Vector3.up * 0.2f, Vector3.down, laserR, groundLayer))
         {
             if (Input.GetKeyUp(jumpButton))
             {
@@ -63,6 +66,7 @@ public class Rabbit : MonoBehaviour
             }
 
         }
+        
 
         float holdTime = (Time.time - timeOfSprint);
         if (holdTime < timeOfBoost)
