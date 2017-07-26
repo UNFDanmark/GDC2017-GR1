@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: "Rabbit - 3ds Max_UVW Temps_R\xE6v_UVM_After_4f1aedb1de8495119419d2c953467afc6480976b"
+  m_Name: DeathPic
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
@@ -48,7 +48,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: a9ddd7b016f028a4683c32f440bc144f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6189c4e7fde6162498ad8a88c6caa41b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
