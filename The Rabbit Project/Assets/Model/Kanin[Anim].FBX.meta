@@ -1,20 +1,17 @@
 fileFormatVersion: 2
-guid: dafe1c60058308347bd05fb33f0957f2
-timeCreated: 1501057045
+guid: 5fe03090d6dad814eb5f1e997ea365e7
+timeCreated: 1501141805
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Master Hedghog
-    100002: Pindsvin
-    100004: //RootNode
-    400000: Master Hedghog
-    400002: Pindsvin
-    400004: //RootNode
-    4300000: Pindsvin
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Kanin
     7400000: Take 001
     9500000: //RootNode
-    13700000: Pindsvin
   materials:
     importMaterials: 1
     materialName: 0
@@ -35,45 +32,11 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: Take 001
-      takeName: Take 001
-      firstFrame: 0
-      lastFrame: 45
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Master Hedghog
-        weight: 1
-      - path: Pindsvin
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 2
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1

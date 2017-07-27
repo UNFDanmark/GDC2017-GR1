@@ -23,6 +23,7 @@ public class Rabbit : MonoBehaviour
     public GameObject modelOfRabbit;
     public float spinTime = 1;
     public LayerMask groundLayer;
+    public TimeManager timeManager;
 
 
     void Awake()
@@ -128,6 +129,15 @@ public class Rabbit : MonoBehaviour
         rabbit.CrossFade("Hop", spinTime);
     }
 
-   
-    
+    void OnTriggerEnter(Collider trigger)
+    {
+        PickUp(trigger.gameObject.GetComponent<CarrotScript>());
+    }
+
+    public void PickUp(CarrotScript coin)
+    {
+        Destroy(coin.gameObject);
+        timeManager.giveCarrot();
+    }
+
 }
