@@ -20,10 +20,9 @@ public class Rabbit : MonoBehaviour
     public float sprintCooldown = 0;
     public float laserR = 0.6f;
     public Animator rabbit;
+    public GameObject modelOfRabbit;
     public float spinTime = 1;
     public LayerMask groundLayer;
-    public bool isWalking = false;
-    public bool isStanding = true;
 
 
     void Awake()
@@ -44,14 +43,16 @@ public class Rabbit : MonoBehaviour
         float holdTime = (Time.time - timeOfSprint);
         if (Input.GetKeyDown(speedRun) && holdTime >= sprintCooldown)
         {
-            isWalking = false;
-            isStanding = false;
             rabbit.CrossFade("Rul 0", spinTime);
             timeOfSprint = Time.time;
         }
         if (Input.GetKeyDown(jumpButton))
         {
-            timeOfClick = Time.time;
+            if (Physics.Raycast(transform.position + Vector3.up * 0.2f, Vector3.down, laserR, groundLayer))
+            {
+                Jump();
+                timeOfClick = Time.time;
+            }
         }
         
 
@@ -61,35 +62,35 @@ public class Rabbit : MonoBehaviour
     void FixedUpdate()
     {
         float holdTime = (Time.time - timeOfSprint);
+        float jumpTime = (Time.time - timeOfClick);
 
+        if (Input.GetKey(jumpButton))
+        {
+            if (jumpTime <= charge)
+            {
+                myRigidbody.AddForce(0, chargedJump, 0);
+            }
+        }
         if (Physics.Raycast(transform.position + Vector3.up * 0.2f, Vector3.down, laserR, groundLayer))
         {
-            if (Input.GetKeyUp(jumpButton))
-            {
-                Jump();
 
-            }
-            else if (holdTime >= timeOfBoost)
+        
+            if (holdTime >= timeOfBoost)
             {
                 if (Mathf.Abs(Input.GetAxis("Horizontal")) < 0.001f)
                 {
 
-                    if (!isStanding)
+                    if (!rabbit.GetCurrentAnimatorStateInfo(0).IsName("Idle 0"))
                     {
-                        
-                        isStanding = true;
-                        isWalking = false;
-                        rabbit.CrossFade("Idle 0", spinTime);
+                        rabbit.Play("Idle 0");
                     }
                 }
                 else
                 {
 
-                    if (!isWalking)
+                    if (!rabbit.GetCurrentAnimatorStateInfo(0).IsName("Gå 0"))
                     {
-                        isWalking = true;
-                        isStanding = false;
-                        rabbit.CrossFade("Gå 0", spinTime);
+                        rabbit.Play("Gå 0");
                     }
                 }
             }
@@ -110,15 +111,20 @@ public class Rabbit : MonoBehaviour
 
     public void Move(float speed)
     {
-        myRigidbody.velocity = transform.forward * speed + Vector3.up * myRigidbody.velocity.y;
-
+        myRigidbody.velocity = Vector3.forward * speed + Vector3.up * myRigidbody.velocity.y;
+        if (speed > 0)
+        {
+            modelOfRabbit.transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+        else if (speed < 0)
+        {
+            modelOfRabbit.transform.eulerAngles = new Vector3(0, 180, 0);
+        }
     }
     public void Jump()
     {
-        isWalking = false;
-        isStanding = false; 
-        float holdTime = (Time.time - timeOfClick);
-        myRigidbody.velocity = new Vector3(myRigidbody.velocity.x, jumpHeight + Mathf.Min(holdTime, charge) * chargedJump, myRigidbody.velocity.z);
+        
+        myRigidbody.velocity = new Vector3(myRigidbody.velocity.x, jumpHeight, myRigidbody.velocity.z);
         rabbit.CrossFade("Hop", spinTime);
     }
 
