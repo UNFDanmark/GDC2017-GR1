@@ -13,3 +13,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
   - enabled: 1
     path: Assets/Scenes/Credits.unity
+  - enabled: 1
+    path: Assets/Scenes/Win Scene.unity
+  - enabled: 1
+    path: Assets/Scenes/Baby scene.unity
+  - enabled: 1
+    path: Assets/Scenes/Dad's dead.unity
+  - enabled: 1
+    path: Assets/Scenes/Game End.unity

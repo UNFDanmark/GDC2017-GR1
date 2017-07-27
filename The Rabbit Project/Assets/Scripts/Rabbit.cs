@@ -17,7 +17,7 @@ public class Rabbit : MonoBehaviour
     public float speedTime = 0;
     public float timeOfSprint = 0;
     public float timeOfBoost = 0;
-    public float sprintCooldown = 0;
+    public float sprintCooldown = 5;
     public float laserR = 0.6f;
     public Animator rabbit;
     public GameObject modelOfRabbit;
@@ -46,6 +46,7 @@ public class Rabbit : MonoBehaviour
         {
             rabbit.CrossFade("Rul 0", spinTime);
             timeOfSprint = Time.time;
+            FindObjectOfType<CooldownTimer>().StartTimer(sprintCooldown);
         }
         if (Input.GetKeyDown(jumpButton))
         {

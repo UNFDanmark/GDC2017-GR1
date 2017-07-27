@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 3abea32e358b26a45b8fb2b2e85fa298
-timeCreated: 1500901475
+guid: 319be373e051a42409629046bb17a001
+timeCreated: 1501154298
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,8 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: "Tr\xE6"
-    9500000: //RootNode
+    4300000: "Tr\xE6stamme[F2B]"
   materials:
     importMaterials: 1
     materialName: 0
@@ -69,7 +68,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

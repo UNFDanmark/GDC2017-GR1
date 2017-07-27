@@ -7,7 +7,7 @@ public class TimeManager : MonoBehaviour {
 
     public float timeSpent;
     public int carrotCount;
-    public float carrotBonus = 10;
+    public float carrotBonus = 5;
     public bool runTimer = true;
 
 	// Use this for initialization
